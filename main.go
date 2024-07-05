@@ -35,7 +35,7 @@ func main() {
 	//Health checker
 	go func() {
 		web.Router("/", &controllers.MainController{})
-		web.Run(":8000")
+		web.Run(":8090")
 	}()
 
 	for update := range updates {
