@@ -1,11 +1,11 @@
 package main
 
 import (
-	"github.com/beego/beego/v2/server/web"
+	"github.com/gin-gonic/gin"
 	tgbotapi "github.com/go-telegram-bot-api/telegram-bot-api/v5"
 	"log"
+	"net/http"
 	"os"
-	"teaseBot/controllers"
 )
 
 const telegramTokenKey = "TG_TOKEN"
@@ -34,8 +34,14 @@ func main() {
 
 	//Health checker
 	go func() {
-		web.Router("/", &controllers.MainController{})
-		web.Run(":8090")
+		router := gin.Default()
+		router.GET("/", func(context *gin.Context) {
+			context.String(http.StatusOK, "Timeweb Cloud + Gin = ❤️")
+		})
+		err := router.Run()
+		if err != nil {
+			return
+		}
 	}()
 
 	for update := range updates {
