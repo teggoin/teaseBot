@@ -53,6 +53,10 @@ func main() {
 					messageReply = resp.Response
 				}
 
+				if len(messageReply) < 1 {
+					messageReply = "Вы меня задрочили и я не могу получить ответ от Chat Gpt"
+				}
+
 				log.Printf("Last message: %s", lastMessage)
 				msg := tgbotapi.NewMessage(update.Message.Chat.ID, messageReply)
 				msg.ReplyToMessageID = lastMessageId
