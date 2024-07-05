@@ -34,7 +34,7 @@ func main() {
 
 	go func() {
 		web.Router("/", &controllers.MainController{})
-		web.Run()
+		web.Run(":8080")
 	}()
 
 	for update := range updates {
