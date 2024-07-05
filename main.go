@@ -32,9 +32,10 @@ func main() {
 	lastMessage := ""
 	lastMessageId := 0
 
+	//Health checker
 	go func() {
 		web.Router("/", &controllers.MainController{})
-		web.Run(":8080")
+		web.Run(":8000")
 	}()
 
 	for update := range updates {
